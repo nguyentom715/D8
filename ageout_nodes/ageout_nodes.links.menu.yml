@@ -1,0 +1,6 @@
+ageout_nodes.ageout_nodes_admin_settings_form:
+  title: "Ageout_nodes"
+  route_name: ageout_nodes.ageout_nodes_admin_settings_form
+  description: "Setting date Form"
+  parent: system.admin_config_tsa
+  weight: 99

@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function ageout_nodes_install()
+{
+  $created_ts = 'America/New_York';
+  //News node
+  $news_from_year = strtotime('2012-12-31 23:59:59' . ' ' . $created_ts);
+  $news_to_year = strtotime('2016-01-01 00:00:00' . ' ' . $created_ts);
+  removeNewsNodes($news_from_year, $news_to_year);
+  //Blog node
+  $blog_from_year = strtotime('2012-12-31 23:59:59' . ' ' . $created_ts);
+  $blog_to_year = strtotime('2016-01-01 00:00:00' . ' ' . $created_ts);
+  removeBlogNodes($blog_from_year, $blog_to_year);
+  //remove node id
+  $get_autocomplete = []; //insert node id in []
+  updatesitemap_deleteusasreach($get_autocomplete);
+}
+
+/**
+ * Base handler for nodes.
+ *
+ * Remove all new nodes
+ */
+function removeNewsNodes($news_from_year, $news_to_year)
+{
+  $nids = getNodesType('press_room', $news_from_year, $news_to_year);
+  updatesitemap_deleteusasreach($nids);
+}
+
+/**
+ * Remove blog nodes.
+ *
+ * @internal
+ */
+function removeBLogNodes($blog_from_year, $blog_to_year)
+{
+  $nids = getNodesType('blog_post', $blog_from_year, $blog_to_year);
+  updatesitemap_deleteusasreach($nids);
+}
+
+/**
+ * Get node type.
+ *
+ * @internal
+ */
+function getNodesType($node_name, $node_from_year, $node_to_year)
+{
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', $node_name)
+    ->condition('created', $node_from_year, '>')
+    ->condition('created', $node_to_year, '<');
+  $nids  = $query->execute();
+  return $nids;
+}
+
+/**
+ * Update/delete search date.
+ */
+function updatesitemap_deleteusasreach($nids)
+{
+  if (isset($nids)) {
+    $nidlog = [];
+    foreach ($nids as $nodenid) {
+      $nidlog[] = $nodenid;
+      db_update('xmlsitemap')
+        ->fields([
+          'status' => 0,
+          'access' => 0,
+          'status_override' => 1,
+        ])
+        ->condition('id', $nodenid)
+        ->execute();
+
+      db_delete('digitalgovsearch')
+        ->condition('nid', $nodenid)
+        ->execute();
+    }
+    \Drupal::logger('ageout_nodes')->notice('<pre>' . 'nidlog<br />' . print_r($nidlog, TRUE) . '</pre>');
+  }
+}
+
+/**
+ * Remove target id.
+ */
+function RemoveTartgetId($nodes)
+{
+  if ($nodes) {
+    foreach ($nodes as $value) {
+      $node[] = $value['target_id'];
+    }
+    return $node;
+  }
+  return [];
+}

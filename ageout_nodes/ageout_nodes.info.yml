@@ -1,0 +1,9 @@
+name: Ageout Nodes
+type: module
+description: "Age out node content from 2012 and older from govsearch, comments and sitemap"
+package: Custom
+dependencies:
+  - usasearch:usasearch
+  - xmlsitemap:xmlsitemap
+configure: ageout_nodes.ageout_nodes_admin_settings_form
+core: "8.x"
