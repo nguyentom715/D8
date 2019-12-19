@@ -1,0 +1,7 @@
+blog_import.admin_settings:
+  path: '/admin/config/blog_import'
+  defaults:
+    _form: '\Drupal\blog_import\Form\precheck_admin'
+    _title: 'Settings'
+  requirements:
+    _permission: 'administer site configuration'

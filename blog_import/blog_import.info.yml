@@ -1,0 +1,12 @@
+type: module
+name: Bog import
+description: 'Various blocks, pages, and functions for developers.'
+package: Development
+# core: 8.x
+configure: blog_import.admin_settings
+tags:
+ - developer
+version: '8.x-2.1'
+core: '8.x'
+project: 'blog_import'
+datestamp: 1556799504
