@@ -1,0 +1,6 @@
+system.redirect_page:
+  title: 'Redirection page'
+  description: 'Configuration for the redirection page'
+  route_name: redirect_page.config
+  parent: system.admin_config_system
+  weight: 100

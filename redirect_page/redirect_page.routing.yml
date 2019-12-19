@@ -1,0 +1,14 @@
+redirect_page.config:
+  path: '/admin/config/system/redirection_page'
+  defaults:
+    _form: '\Drupal\redirect_page\Form\Redirect'
+    _title: 'Redirection page'
+  requirements:
+    _permission: 'administer site configuration'
+redirect_page.redirect_page_render:
+  path: '/redirect'
+  defaults:
+    _controller: '\Drupal\redirect_page\Controller\RedirectController::redirect_page_render'
+    _title: 'Redirection page'
+  requirements:
+    _permission: 'access content'

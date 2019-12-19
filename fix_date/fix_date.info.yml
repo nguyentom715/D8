@@ -1,0 +1,7 @@
+name: Fix Date
+type: module
+description: 'Fix field date after migrate drupal 7 to drupal 8'
+package: Custom
+# version: VERSION
+# core: 8.x
+core: '8.x'

@@ -1,0 +1,33 @@
+<?php
+/**
+* close comment when install module
+*/
+function turn_off_comment_install(){
+    $types =  \Drupal\node\Entity\NodeType::loadMultiple();
+    $options = [];
+    foreach ($types as $node_type) {
+       $name = $node_type->id();
+       $db_name = 'node__comment_node_'.$name;
+       if(db_table_exists($db_name)){
+            $field_comment_name = 'comment_node_'.$name.'_status';
+            db_update($db_name)->fields(array($field_comment_name => 1))->execute();
+			//if you want open comment when install change $field_comment_name => 2
+       }
+    }
+}
+/**
+* open comment when uninstall module
+*/ 
+function turn_off_comment_uninstall(){
+    $types =  \Drupal\node\Entity\NodeType::loadMultiple();
+    $options = [];
+    foreach ($types as $node_type) {
+       $name = $node_type->id();
+       $db_name = 'node__comment_node_'.$name;
+       if(db_table_exists($db_name)){
+            $field_comment_name = 'comment_node_'.$name.'_status';
+            db_update($db_name)->fields(array($field_comment_name => 2))->execute();
+			//if you want close comment when uninstall change $field_comment_name => 1
+       }
+    }
+}

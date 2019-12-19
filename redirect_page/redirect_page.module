@@ -1,0 +1,23 @@
+<?php
+/**
+* Get redirect page.
+*/
+function redirect_page_page_attachments_alter(array &$attachments) {
+  $attachments['#attached']['library'][] = 'redirect_page/js-lib';
+}
+function redirect_page_install() {
+  $ready_msg =<<<EOS
+
+<h2>Redirect</h2>
+
+<p>You are now leaving an official website of the Federal Emergency Management
+Agency. Links to non-FEMA sites are provided for the visitor's convenience and
+do not represent an endorsement by FEMA of any commercial or private issues,
+products or services. Note that the privacy policy of the linked site may differ
+from that of FEMA.</p>
+
+<p>Proceed to <a id="external_link">link_name</a>.</p>
+
+EOS;
+\Drupal::state()->set('redirect_page_message', $ready_msg);
+}

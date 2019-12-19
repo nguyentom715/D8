@@ -1,0 +1,15 @@
+forecast_weather.form:
+  path: "/forecast-weather"
+  defaults:
+    _title: "Forecast weather"
+    _form: '\Drupal\forecast_weather\Form\Forecast_weather'
+  requirements:
+    _permission: "access content"
+
+forecast_weather.autocomplete:
+  path: "/admin/forecast-weather/autocomplete"
+  defaults:
+    _controller: '\Drupal\forecast_weather\Controller\CityAutoCompleteController::handleAutocomplete'
+    _format: json
+  requirements:
+    _permission: "access content"

@@ -1,0 +1,7 @@
+type: module
+name: Turn on/off comment 
+description: 'Turn off comment when install module/ turn on commment when uninstall module'
+package: Custom
+dependencies:
+  - drupal:comment
+core: '8.x'

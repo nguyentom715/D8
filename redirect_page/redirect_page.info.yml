@@ -1,0 +1,8 @@
+type: module
+name: Redirect Page
+description: "Provides a redirect page for external links."
+configure: redirect_page.config
+# version: VERSION
+# core: 8.x
+core: '8.x'
+package: Custom

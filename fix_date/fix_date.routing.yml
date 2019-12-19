@@ -1,0 +1,7 @@
+fix_date.form:
+  path: '/admin/config/development/fix-date'
+  defaults:
+    _form: '\Drupal\fix_date\Form\FixDate'
+    _title: 'Fix date'
+  requirements:
+    _permission: 'administer site configuration'

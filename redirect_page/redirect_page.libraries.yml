@@ -1,0 +1,13 @@
+js-lib:
+  version: 1.x
+  js:
+    js/location.js: {}
+  dependencies:
+    - core/jquery
+js-set:
+  version: 1.x
+  js:
+    js/external_links.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
