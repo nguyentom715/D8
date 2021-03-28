@@ -1,0 +1,24 @@
+shortcode_gallery.config:
+  path: '/admin/config/shortcode/gallery'
+  defaults:
+    _form: '\Drupal\shortcode_gallery\Form\SettingsForm'
+    _title: 'Gallery settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+shortcode_gallery.dialog:
+  path: '/shortcode-gallery/dialog/{editor}'
+  defaults:
+    _form: '\Drupal\shortcode_gallery\Form\GalleryShortcodeDialog'
+    _title: 'Embed Related Gallery'
+  requirements:
+    _permission: 'access content overview'
+
+shortcode_gallery.preview:
+  path: '/shortcode-gallery/preview/{filter_format}'
+  defaults:
+    _controller: '\Drupal\shortcode_gallery\Controller\CKEditorPreviewController::preview'
+  requirements:
+    _entity_access: 'filter_format.use'
+  options:
+    _theme: ajax_base_page

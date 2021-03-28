@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * This module implements the gallery ckeditor shortcode.
+ */
+
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FormatterInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_field_formatter_third_party_settings_form().
+ */
+function shortcode_gallery_field_formatter_third_party_settings_form(
+  FormatterInterface $plugin,
+  FieldDefinitionInterface $field_definition,
+  $view_mode,
+  $form,
+  FormStateInterface $form_state
+) {
+  $element = [];
+
+  if ($plugin->getPluginId() === 'shortcode') {
+    $element['shortcode_gallery_display'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Render Gallery Shortcodes?'),
+      '#default_value' => $plugin->getThirdPartySetting(
+        'shortcode_gallery',
+        'shortcode_gallery_display'
+      ),
+    ];
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary_alter().
+ */
+function shortcode_gallery_field_formatter_settings_summary_alter(
+  &$summary,
+  $context
+) {
+  if ($context['formatter']->getPluginId() === 'shortcode') {
+    if ($context['formatter']->getThirdPartySetting(
+      'shortcode_gallery',
+      'shortcode_gallery_display'
+    )
+    ) {
+      $summary[] = t('Render Gallery Shortcodes: Yes');
+    }
+    else {
+      $summary[] = t('Render Gallery Shortcodes: No');
+    }
+  }
+}

@@ -1,0 +1,7 @@
+shortcode_gallery.embed.dialog:
+  version: VERSION
+  js:
+    js/embed.dialog.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

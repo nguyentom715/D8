@@ -1,0 +1,12 @@
+shortcode_gallery.settings:
+  type: config_object
+  label: 'Gallery settings'
+  mapping:
+    entity_browser:
+      label: 'The entity browser to use with this module'
+      type: string
+    view_modes:
+      label: 'View modes eligble for selection in the gallery shortcode dialog box'
+      type: sequence
+      sequence:
+        type: string

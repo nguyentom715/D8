@@ -1,0 +1,9 @@
+name: Shortcode Gallery
+description: Converts gallery shortcodes to HTML.
+package: shortcode
+dependencies:
+  - shortcode
+  - ckeditor
+
+type: module
+core: 8.x

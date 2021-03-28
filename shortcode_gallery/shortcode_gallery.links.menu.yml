@@ -1,0 +1,6 @@
+shortcode_gallery.config:
+  title: 'Gallery settings'
+  description: 'Choose the related gallery node type.'
+  route_name: shortcode_gallery.config
+  parent: shortcode.config
+  weight: 0
