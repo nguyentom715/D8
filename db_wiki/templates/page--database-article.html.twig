@@ -1,0 +1,12 @@
+{% extends 'page.html.twig' %}
+
+{%- set content_classes = 'col-xs-12 col-md-8' -%}
+
+{% block hero_header %}{% endblock hero_header %}
+{% block content %}
+  {{ attach_library('db_wiki/wiki_filter') }}
+  <div id="db-wiki-articles">
+    <h1 class="header-title">{{ page['#title'] }}</h1>
+    {{ page.content }}
+  </div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+<div class="db-filters-section" id="db-filters-alpha" style="display: none;">
+  {% set filtersPerColumn = (filters|length / 4)|round(0, 'ceil') %}
+  {% for display, value in filters %}
+    {% if filtersPerColumn == 1 or loop.index % filtersPerColumn == 1 %}
+    <div class="row">
+    {% endif %}
+    <span data-letter="{{ value }}" class="alpha-selector">{{ display }}</span>
+    {% if loop.last or loop.index % filtersPerColumn == 0 %}
+    </div>
+    {% endif %}
+  {% endfor %}
+  <hr>
+</div>

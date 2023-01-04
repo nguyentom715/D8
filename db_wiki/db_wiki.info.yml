@@ -1,0 +1,6 @@
+name: DB Wiki
+description: Handles the database_articles from legacy DB Wiki website.
+package: DB Wiki Custom
+type: module
+core: 8.x
+configure: db_wiki.settings

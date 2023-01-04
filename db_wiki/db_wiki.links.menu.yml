@@ -1,0 +1,6 @@
+db_wiki.api_settings_form:
+  title: 'DB Wiki Settings'
+  route_name: db_wiki.api_settings_form
+  description: 'Configure the DB Wiki'
+  parent: system.admin_config_system
+  weight: 98

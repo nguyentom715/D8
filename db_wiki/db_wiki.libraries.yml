@@ -1,0 +1,5 @@
+wiki_filter:
+  js:
+    js/db_wiki.js: {}
+  dependencies:
+      - core/jquery

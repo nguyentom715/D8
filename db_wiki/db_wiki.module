@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function db_wiki_theme() {
+  $theme = [
+    'db_wiki_air_date_filter' => [
+      'variables' => [
+        'filters'  => NULL,
+      ],
+    ],
+    'db_wiki_alpha_filter' => [
+      'variables' => [
+        'filters'  => NULL,
+      ],
+    ],
+    'db_wiki_movies_filter' => [
+      'variables' => [
+        'filters'  => NULL,
+      ],
+    ],
+    'db_wiki_sections_filter' => [
+      'variables' => [
+        'filters'  => NULL,
+      ],
+    ],
+    'db_wiki_star_date_filter' => [
+      'variables' => [
+        'filters'  => NULL,
+      ],
+    ],
+    'page__database' => [
+      'template' => 'page--database',
+      'base hook' => 'page'
+    ],
+    'page__database_article' => [
+      'template' => 'page--database-article',
+      'base hook' => 'page'
+    ],
+  ];
+
+  return $theme;
+}
+
+
+/**
+ * Implements hook_preprocess_page__database().
+ *
+ * @param $vars
+ */
+function db_wiki_preprocess_page__database(&$vars) {
+  buildFilterBlocks($vars);
+}
+
+/**
+ * Implements hook_preprocess_page__database_article().
+ *
+ * @param $vars
+ */
+function db_wiki_preprocess_page__database_article(&$vars) {
+  buildFilterBlocks($vars);
+}
+
+function buildFilterBlocks(&$vars) {
+  /** @var \Drupal\Core\Block\BlockManager $blockManager */
+  $blockManager = \Drupal::service('plugin.manager.block');
+  try {
+    // Create the DB Wiki Air Date Filter block.
+    $airDateFilterBlock = $blockManager->createInstance('db_wiki_air_date_filter_block', []);
+    $vars['air_date_filters'] = $airDateFilterBlock->build();
+
+    // Create the DB Wiki Air Date Filter block.
+    $alphaFilterBlock = $blockManager->createInstance('db_wiki_alpha_filter_block', []);
+    $vars['alpha_filters'] = $alphaFilterBlock->build();
+
+    // Create the DB Wiki Movies Filter block.
+    $moviesFilterBlock = $blockManager->createInstance('db_wiki_movies_filter_block', []);
+    $vars['movies_filters'] = $moviesFilterBlock->build();
+
+    // Create the DB Wiki Sections Filter block.
+    $sectionsFilterBlock = $blockManager->createInstance('db_wiki_sections_filter_block', []);
+    $vars['sections_filters'] = $sectionsFilterBlock->build();
+
+    // Create the DB Wiki Star Date Filter block.
+    $starDateFilterBlock = $blockManager->createInstance('db_wiki_star_date_filter_block', []);
+    $vars['star_date_filters'] = $starDateFilterBlock->build();
+
+  } catch(\Drupal\Component\Plugin\Exception\PluginException $exception) {
+    \Drupal::logger('db_wiki')->notice($exception->getMessage());
+  }
+}

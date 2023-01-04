@@ -1,0 +1,18 @@
+<div class="db-filters-section form-horizontal" id="db-filters-section-star-date-categories">
+  <div class="db-filters-section-toggle row">
+    <div class="db-filters-section-toggle-all col-xs-5" data-toggle="all">Select All</div>
+    <div class="db-filters-section-toggle-none col-xs-6" data-toggle="none">Select None</div>
+  </div>
+  {% for display, value in filters %}
+  <div class="form-group">
+    <div class="col-xs-12">
+      <div class="checkbox">
+        <label class="filter-display">
+          <input type="checkbox" value="{{ value }}" data-filter="category" data-init-checked="0">{{ display }}
+        </label>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <hr>
+</div>

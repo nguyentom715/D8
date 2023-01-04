@@ -1,0 +1,76 @@
+{% extends 'page.html.twig' %}
+
+{%- set content_classes = 'col-sm-12 col-md-9' -%}
+{%- block main -%}
+<div class="container">
+  <div class="row">
+    {% block sidebar_one %}
+      {{ attach_library('db_wiki/wiki_filter') }}
+      <nav id="mobile-nav" class="navbar navbar-default navbar-fixed-bottom visible-xs-block visible-sm-block">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand collapsed" data-toggle="collapse" data-target="#mobile-nav-subnav" aria-expanded="false" href="#"><span class="glyphicon glyphicon-list"></span>Sort & Filters</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="mobile-nav-subnav">
+            <button id="close-navbar" type="button" class="col-xs-1 pull-right bg-primary" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+        </div>
+      </nav>
+      <div class="col-sm-12 col-md-2" id="db-wiki-filters">
+        <div id="sorting">
+          <h5 class="db-wiki-filter-header">Sort By:</h5>
+          <ul id="sort-selector" class="filter-selector">
+            <li class="active selector" data-type="Star Date" id="star-date">Star Date</li>
+            <li class="selector" data-type="Air Date" id="air-date">Air Date</li>
+          </ul>
+          <hr>
+        </div>
+        <div id="viewing">
+          <h5 class="db-wiki-filter-header">View As:</h5>
+          <ul id="view-selector" class="filter-selector">
+            <li class="active selector" data-type="Timeline" id="timeline-view">Timeline</li>
+            <li class="selector" data-type="A-Z List" id="alpha-view">A-Z List</li>
+          </ul>
+          <hr>
+        </div>
+        {{ alpha_filters }}
+        {{ star_date_filters }}
+        {{ air_date_filters }}
+        {{ sections_filters }}
+        {{ movies_filters }}
+      </div>
+    {% endblock sidebar_one %}
+
+    {% block content %}
+      <div class="col-sm-12 col-md-10">
+        {# Display set to none to prevent artifact splash on page load #}
+        <div id="loading"><img src="/themes/custom/networks/images/st-loading.gif"><h3>Loading ............</h3></div>
+        <div id="db-wiki-articles" style="display: none;">
+          <div class="row">
+            <div id="db-wiki-breadcrumb" class="col-xs-12">
+              <span class="crumb" id="sort-as">Star Date</span><span>/</span><span class="crumb" id="view-as">Timeline</span>
+            </div>
+          </div>
+          {{ page.content }}
+        </div>
+
+        <div class="load-more">
+          <ul class="js-pager__items pager">
+            <li class="pager__item">
+            </li>
+            <li class="pager__item">
+              <a class="button" id="load-more" href="#" title="Load More" rel="next">Load More</a>
+              <div id="loading-more" style="display: none;">
+                <img src="/themes/custom/networks/images/st-loading.gif"><h3>Loading ............</h3>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    {% endblock content %}
+  </div>
+</div>
+{% endblock main %}

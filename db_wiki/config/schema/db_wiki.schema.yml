@@ -1,0 +1,10 @@
+db_wiki.api_settings:
+  type: config_object
+  label: 'DB Wiki Settings'
+  mapping:
+    db_wiki:
+      type: mapping
+      mapping:
+        endpoint:
+          type: text
+          label: 'Domain to point to for article information'
